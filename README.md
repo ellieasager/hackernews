@@ -19,4 +19,9 @@ go run github.com/99designs/gqlgen init
 go run server.go
 ```
 
-2. In your browser go to http://localhost:8080/
+2. In MySQL db
+```
+CREATE DATABASE hackernews;
+```
+
+3. In your browser go to http://localhost:8080/
