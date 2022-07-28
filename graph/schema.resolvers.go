@@ -11,6 +11,7 @@ import (
 	"github.com/ellieasager/hackernews/graph/generated"
 	"github.com/ellieasager/hackernews/graph/model"
 	"github.com/ellieasager/hackernews/internal/links"
+	"github.com/ellieasager/hackernews/internal/users"
 )
 
 // CreateLink is the resolver for the createLink field.
@@ -23,8 +24,12 @@ func (r *mutationResolver) CreateLink(ctx context.Context, input model.NewLink) 
 }
 
 // CreateUser is the resolver for the createUser field.
-func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (string, error) {
-	panic(fmt.Errorf("not implemented"))
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
+	var user users.User
+	user.Username = input.Username
+	user.Password = input.Password
+	userID := user.Save()
+	return &model.User{ID: strconv.FormatInt(userID, 10), Name: user.Username}, nil
 }
 
 // Login is the resolver for the login field.
@@ -45,6 +50,16 @@ func (r *queryResolver) Links(ctx context.Context) ([]*model.Link, error) {
 		resultLinks = append(resultLinks, &model.Link{ID: link.ID, Title: link.Title, Address: link.Address})
 	}
 	return resultLinks, nil
+}
+
+// Users is the resolver for the users field.
+func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
+	var resultUsers []*model.User
+	dbUser := users.GetAll()
+	for _, user := range dbUser {
+		resultUsers = append(resultUsers, &model.User{ID: user.ID, Name: user.Username})
+	}
+	return resultUsers, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
