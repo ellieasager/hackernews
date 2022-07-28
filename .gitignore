@@ -36,6 +36,5 @@ graph/model/
 # End of https://www.toptal.com/developers/gitignore/api/go
 .DS_Store
 .gitignore
-graph/resolver.go
 go.mod
 go.sum
