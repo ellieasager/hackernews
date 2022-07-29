@@ -29,12 +29,11 @@ go.work
 # /vendor/
 # /Godeps/
 
-# Auto-generated files
-graph/generated/
-graph/model/
-
 # End of https://www.toptal.com/developers/gitignore/api/go
 .DS_Store
 .gitignore
 go.mod
 go.sum
+tools.go
+graph/generated/
+graph/model/
