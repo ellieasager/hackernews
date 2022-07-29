@@ -36,3 +36,23 @@ go run server.go
 ```
 
 5. In your browser go to http://localhost:8080/
+
+- Try creating a user:
+```
+mutation {
+  createUser(input: {username: "new user", password: "password"}){
+    id,
+    name
+  }
+}
+```
+
+- List existing users:
+```
+query {
+  users {
+    id
+    name
+  }
+}
+```
