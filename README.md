@@ -22,13 +22,14 @@ go mod tidy
 3. In code:
 In the file `internal/pkg/db/mysql/mysql.go` set username and password for the db connection in method `InitDB()`.
 
-4. Cli: make sure to use your username and password when running `migrate -database` below
+4. Cli: make sure to use your username and password when running the command below
 ```
-migrate -database mysql://root:rootroot@/hackernews -path internal/pkg/db/migrations/mysql up
-go run server.go
+migrate -database mysql://root:dbpassword@/hackernews -path internal/pkg/db/migrations/mysql up
 ```
 
-5. In your browser go to http://localhost:8080/
+5. Cli: `go run server.go`
+
+6. In your browser go to http://localhost:8080/
 
 - Try creating a user:
 ```
