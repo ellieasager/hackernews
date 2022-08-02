@@ -16,6 +16,7 @@ CREATE DATABASE hackernews;
 ```
 git clone https://github.com/ellieasager/hackernews
 cd hackernews
+printf '// +build tools\npackage tools\nimport _ "github.com/99designs/gqlgen"' | gofmt > tools.go
 go mod tidy
 ```
 
@@ -49,4 +50,9 @@ query {
     name
   }
 }
+```
+
+7. If you need to re-generate files, run 
+````
+go run github.com/99designs/gqlgen generate
 ```
