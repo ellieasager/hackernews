@@ -53,6 +53,6 @@ query {
 ```
 
 7. If you need to re-generate files, run 
-````
+```
 go run github.com/99designs/gqlgen generate
 ```
